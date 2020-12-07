@@ -36,20 +36,20 @@ class NbdSpyder(Spyder):
         date = ""
         for span in span_list:
             if "class" in span.attrs and span.text and span["class"] == ["time"]:
-                    string = span.text.split()
-                    for dt in string:
-                        if dt.find("-") != -1:
-                            date += dt + " "
-                        elif dt.find(":") != -1:
-                            date += dt
-                    break
+                string = span.text.split()
+                for dt in string:
+                    if dt.find("-") != -1:
+                        date += dt + " "
+                    elif dt.find(":") != -1:
+                        date += dt
+                break
         for paragraph in part:
             chn_status = utils.count_chn(str(paragraph))
             possible = chn_status[1]
             if possible > self.is_article_prob:
                 article += str(paragraph)
         while article.find("<") != -1 and article.find(">") != -1:
-            string = article[article.find("<"):article.find(">")+1]
+            string = article[article.find("<"):article.find(">") + 1]
             article = article.replace(string, "")
         while article.find("\u3000") != -1:
             article = article.replace("\u3000", "")
@@ -64,7 +64,7 @@ class NbdSpyder(Spyder):
         else:
             latest_page_id = start_page
         crawled_urls_list = list()
-        for page_id in range(start_page, int(latest_page_id)-1, -1):
+        for page_id in range(start_page, int(latest_page_id) - 1, -1):
             query_results = self.query_news("PageId", page_id)
             for qr in query_results:
                 crawled_urls_list.append(qr["Url"])

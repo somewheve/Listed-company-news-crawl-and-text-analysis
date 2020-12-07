@@ -39,9 +39,10 @@ class JrjSpyder(Spyder):
         article = ""
         for p in bs.find_all("p"):
             if not p.find_all("jrj_final_daohang_start") and p.attrs == {} and \
-                    not p.find_all("input") and not p.find_all("a", attrs={"class": "red"}) and not p.find_all("i") and not p.find_all("span"):
-            # if p.contents[0] != "jrj_final_daohang_start1" and p.attrs == {} and \
-            #         not p.find_all("input") and not p.find_all("a", attrs={"class": "red"}) and not p.find_all("i"):
+                    not p.find_all("input") and not p.find_all("a", attrs={"class": "red"}) and not p.find_all(
+                "i") and not p.find_all("span"):
+                # if p.contents[0] != "jrj_final_daohang_start1" and p.attrs == {} and \
+                #         not p.find_all("input") and not p.find_all("a", attrs={"class": "red"}) and not p.find_all("i"):
                 article += p.text.replace("\r", "").replace("\n", "").replace("\u3000", "")
 
         return [date, article]
@@ -133,14 +134,14 @@ class JrjSpyder(Spyder):
                                             article_specific_date, article = result
                                         self.is_article_prob = .5
                                         if article != "":
-                                                data = {"Date": article_specific_date,
-                                                        "Url": a["href"],
-                                                        "Title": a.string,
-                                                        "Article": article}
-                                                self.col.insert_one(data)
-                                                logging.info("[SUCCESS] {} {} {}".format(article_specific_date,
-                                                                                         a.string,
-                                                                                         a["href"]))
+                                            data = {"Date": article_specific_date,
+                                                    "Url": a["href"],
+                                                    "Title": a.string,
+                                                    "Article": article}
+                                            self.col.insert_one(data)
+                                            logging.info("[SUCCESS] {} {} {}".format(article_specific_date,
+                                                                                     a.string,
+                                                                                     a["href"]))
                                     self.terminated_amount = 0  # 爬取结束后重置该参数
                                 else:
                                     logging.info("[QUIT] {}".format(a.string))

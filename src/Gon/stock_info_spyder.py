@@ -7,6 +7,7 @@ from spyder import Spyder
 from Kite import config
 
 import tushare as ts
+
 ts.set_token(config.TUSHARE_TOKEN)
 
 import akshare as ak

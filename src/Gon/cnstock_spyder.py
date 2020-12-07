@@ -52,7 +52,7 @@ class CnStockSpyder(Spyder):
             if possible > self.is_article_prob:
                 article += str(paragraph)
         while article.find("<") != -1 and article.find(">") != -1:
-            string = article[article.find("<"):article.find(">")+1]
+            string = article[article.find("<"):article.find(">") + 1]
             article = article.replace(string, "")
         while article.find("\u3000") != -1:
             article = article.replace("\u3000", "")
@@ -72,7 +72,7 @@ class CnStockSpyder(Spyder):
                 more_btn.click()
                 time.sleep(random.random())  # sleep random time less 1s
             elif self.btn_more_text == "加载中...":
-                time.sleep(random.random()+2)
+                time.sleep(random.random() + 2)
                 more_btn = self.driver.find_element_by_id('j_more_btn')
                 self.btn_more_text = more_btn.text
                 logging.info("2-{}".format(more_btn.text))
